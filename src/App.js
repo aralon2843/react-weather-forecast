@@ -1,13 +1,14 @@
 import styled from 'styled-components'
-import CurrentWeather from './components/CurrentWeather'
-import DailyForecast from './components/DailyForecast'
-
+import CurrentWeather from './components/CurrentWeather/CurrentWeather'
+import DailyForecast from './components/DailyForecast/DailyForecast'
+import Details from './components/Details/Details'
+import HourlyForecast from './components/HourlyForecast/HourlyForecast'
 
 const Wrapper = styled.div`
-  width: 100%;
   min-height: 100vh;
   overflow: hidden;
   background-color: #262626;
+  padding: 0px 15px;
 `
 
 const Container = styled.div`
@@ -21,6 +22,8 @@ const App = () => {
       <Container>
         <CurrentWeather />
         <DailyForecast />
+        <HourlyForecast />
+        <Details />
       </Container>
     </Wrapper>
   )
