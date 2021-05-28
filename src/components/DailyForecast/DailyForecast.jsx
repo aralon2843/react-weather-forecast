@@ -17,7 +17,7 @@ function DailyForecast() {
           {days.map((day, i) => (
             <DayForecast
               onDayClick={() => setActiveDay(i)}
-              active={i == activeDay ? true : false}
+              active={i === activeDay ? true : false}
             />
           ))}
         </Flex>

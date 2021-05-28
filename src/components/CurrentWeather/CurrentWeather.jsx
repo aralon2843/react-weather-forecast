@@ -9,7 +9,7 @@ import {
   StyledWeatherIcon,
 } from './Styles'
 
-function CurrentWeather() {
+const CurrentWeather = () => {
   return (
     <StyledCurrentWeather>
       <StyledLocation>{`${'Луганск'}, ${'Украина'}`}</StyledLocation>
