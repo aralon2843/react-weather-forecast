@@ -2,6 +2,7 @@ import React from 'react'
 import {
   StyledDate,
   StyledDayForecast,
+  StyledDescription,
   StyledImage,
   StyledTemperature,
 } from './Styles'
@@ -11,12 +12,14 @@ function DayForecast(props) {
     <StyledDayForecast
       className={props.active ? 'active' : ''}
       onClick={() => props.onDayClick()}>
-      <StyledDate>Fri 28</StyledDate>
-      <StyledImage src='https://image.flaticon.com/icons/png/512/869/869869.png'></StyledImage>
+      <StyledDate>
+        {props.date[0]} {props.date[2]}
+      </StyledDate>
+      <StyledImage src={props.icon}></StyledImage>
       <StyledTemperature>
-        20° <span>14°</span>
+        {props.maxTemp}° <span> {props.minTemp}°</span>
       </StyledTemperature>
-      <p>Mostly rain</p>
+      <StyledDescription>{props.description}</StyledDescription>
     </StyledDayForecast>
   )
 }

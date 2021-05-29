@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from 'axios'
 
 const axiosInstance = axios.create({
   baseURL: 'https://api.openweathermap.org/data/2.5/',
@@ -6,7 +6,19 @@ const axiosInstance = axios.create({
 
 const API = {
   getCurrentWeather: (lat, lon) => {
-    return axiosInstance.get(`weather?lat=${lat}&lon=${lon}&units=metric&appid=34f0fb637a40be39e56e907408b59746`).then(response => response.data)
-  }
+    return axiosInstance
+      .get(
+        `weather?lat=${lat}&lon=${lon}&units=metric&appid=34f0fb637a40be39e56e907408b59746`
+      )
+      .then((response) => response.data)
+  },
+
+  getDailyWeather: (lat, lon) => {
+    return axiosInstance
+      .get(
+        `onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts,current&units=metric&appid=34f0fb637a40be39e56e907408b59746`
+      )
+      .then((response) => response.data)
+  },
 }
 export default API

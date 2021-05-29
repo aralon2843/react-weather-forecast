@@ -18,15 +18,15 @@ const Details = () => {
       <Flex>
         <StyledSun>
           <StyledDescription>Sunrise</StyledDescription>
-          <StyledSunrise>4:28 AM</StyledSunrise>
+          <StyledSunrise>Test AM</StyledSunrise>
           <StyledDescription>Sunset</StyledDescription>
-          <StyledSunset>8:11 PM</StyledSunset>
+          <StyledSunset>Test PM</StyledSunset>
         </StyledSun>
         <StyledMoon>
           <StyledDescription>Moonrise</StyledDescription>
-          <StyledMoonrise>10:57 PM</StyledMoonrise>
+          <StyledMoonrise>Test PM</StyledMoonrise>
           <StyledDescription>Moonset</StyledDescription>
-          <StyledMoonset>5:50 AM</StyledMoonset>
+          <StyledMoonset>Test AM</StyledMoonset>
         </StyledMoon>
       </Flex>
     </StyledDetails>

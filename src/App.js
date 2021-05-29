@@ -8,6 +8,7 @@ import HourlyForecast from './components/HourlyForecast/HourlyForecast'
 import { getPosition } from './redux/actions/position'
 import background from './assets/images/background.jpg'
 import { getCurrentWeather } from './redux/actions/currentWeather'
+import { getDailyWeather } from './redux/actions/dailyWeather'
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -23,12 +24,17 @@ const Container = styled.div`
 
 const App = () => {
   const dispatch = useDispatch()
+  
   const lat = useSelector((state) => state.position.lat)
   const lon = useSelector((state) => state.position.lon)
+
   useEffect(() => {
     console.log('update')
     dispatch(getPosition())
-    if (lat ?? lon) dispatch(getCurrentWeather(lat, lon))
+    if (lat && lon) {
+      dispatch(getCurrentWeather(lat, lon))
+      dispatch(getDailyWeather(lat, lon))
+    }
   })
   return (
     <Wrapper>

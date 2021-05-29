@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const StyledDailyForecast = styled.div`
-  max-width: 800px;
+  max-width: 1000px;
   overflow-y: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;

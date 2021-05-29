@@ -17,7 +17,7 @@ export default (state = initialState, { type, payload }) => {
         country: payload.sys.country,
         city: payload.name,
         temperature: payload.main.temp,
-        icon: `http://openweathermap.org/img/wn/${payload.weather[0].icon}@4x.png`,
+        icon: payload.weather[0].icon,
         description: payload.weather[0].description,
         feelsLike: payload.main.feels_like,
         wind: payload.wind.speed,

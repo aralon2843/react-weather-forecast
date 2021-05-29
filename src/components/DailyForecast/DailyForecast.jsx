@@ -1,23 +1,38 @@
 import React from 'react'
-import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Flex from '../../common/Flex'
+import { setActiveDay } from '../../redux/actions/dailyWeather'
 import DayForecast from './DayForecast/DayForecast'
 import { StyledDailyForecast, StyledTitle, StyledWrapper } from './Styles'
 
 function DailyForecast() {
-  const days = [1, 2, 3, 4, 5]
+  const { days, activeDay } = useSelector((state) => state.dailyWeather)
 
-  const [activeDay, setActiveDay] = useState(0)
+  const dispatch = useDispatch()
+
+  const onDayClick = (day) => {
+    dispatch(setActiveDay(new Date(day.dt * 1000).toDateString()))
+  }
 
   return (
     <StyledDailyForecast>
       <StyledTitle>Daily</StyledTitle>
       <StyledWrapper>
         <Flex justify='space-between'>
-          {days.map((day, i) => (
+          {days.map((day) => (
             <DayForecast
-              onDayClick={() => setActiveDay(i)}
-              active={i === activeDay ? true : false}
+              onDayClick={() => onDayClick(day)}
+              active={
+                activeDay.date === new Date(day.dt * 1000).toDateString()
+                  ? true
+                  : false
+              }
+              date={new Date(day.dt * 1000).toDateString().split(' ')}
+              icon={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
+              maxTemp={Math.ceil(day.temp.max)}
+              minTemp={Math.floor(day.temp.min)}
+              description={day.weather[0].description}
+              key={day.dt}
             />
           ))}
         </Flex>

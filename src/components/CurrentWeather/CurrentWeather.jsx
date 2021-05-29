@@ -25,7 +25,7 @@ const CurrentWeather = () => {
     <StyledCurrentWeather>
       <StyledLocation>{city}, {country}</StyledLocation>
       <Flex align='center' justify='space-around'>
-        <StyledWeatherIcon src={icon} alt='weather icon'/>
+        <StyledWeatherIcon src={`http://openweathermap.org/img/wn/${icon}@4x.png`} alt='weather icon'/>
         <StyledTemperature>{Math.ceil(temperature)}°</StyledTemperature>
       </Flex>
       <StyledDescription>{description}</StyledDescription>

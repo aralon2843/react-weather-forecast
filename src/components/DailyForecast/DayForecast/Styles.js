@@ -3,11 +3,13 @@ import styled from 'styled-components'
 export const StyledDayForecast = styled.div`
   padding: 5px 15px 10px 5px;
   min-width: 100px;
+  max-width: 125px;
+  cursor: pointer;
   &:hover {
-    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline: 2px solid rgba(255, 255, 255, 0.8);
   }
   &.active {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.3);
     position: relative;
     &::after {
       content: '';
@@ -15,7 +17,7 @@ export const StyledDayForecast = styled.div`
       bottom: -23px;
       left: calc(50% - 13px);
       border: 13px solid transparent;
-      border-top: 10px solid rgba(255, 255, 255, 0.5);
+      border-top: 10px solid rgba(255, 255, 255, 0.3);
     }
   }
 `
@@ -27,8 +29,9 @@ export const StyledDate = styled.p`
 export const StyledImage = styled.img`
   object-fit: cover;
   object-position: center;
-  width: 35px;
-  height: 35px;
+  width: 70px;
+  height: 70px;
+  // margin: -10px 0px -10px -15px;
 `
 
 export const StyledTemperature = styled.p`
@@ -39,4 +42,7 @@ export const StyledTemperature = styled.p`
     color: rgba(255, 255, 255, 0.5);
   }
   margin-bottom: 10px;
+`
+export const StyledDescription = styled.p`
+  min-width: 120px;
 `
