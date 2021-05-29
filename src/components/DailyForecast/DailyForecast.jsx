@@ -5,7 +5,7 @@ import DayForecast from './DayForecast/DayForecast'
 import { StyledDailyForecast, StyledTitle, StyledWrapper } from './Styles'
 
 function DailyForecast() {
-  const days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  const days = [1, 2, 3, 4, 5]
 
   const [activeDay, setActiveDay] = useState(0)
 

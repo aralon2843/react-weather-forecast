@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import Flex from '../../common/Flex'
 import {
   CurrentWeatherDetails,
@@ -10,18 +11,28 @@ import {
 } from './Styles'
 
 const CurrentWeather = () => {
+  const {
+    country,
+    city,
+    description,
+    feelsLike,
+    icon,
+    temperature,
+    visibility,
+    wind,
+  } = useSelector((state) => state.currentWeather)
   return (
     <StyledCurrentWeather>
-      <StyledLocation>{`${'Луганск'}, ${'Украина'}`}</StyledLocation>
+      <StyledLocation>{city}, {country}</StyledLocation>
       <Flex align='center' justify='space-around'>
-        <StyledWeatherIcon src='https://image.flaticon.com/icons/png/512/869/869869.png' />
-        <StyledTemperature>18°</StyledTemperature>
+        <StyledWeatherIcon src={icon} alt='weather icon'/>
+        <StyledTemperature>{Math.ceil(temperature)}°</StyledTemperature>
       </Flex>
-      <StyledDescription>Cloudy</StyledDescription>
+      <StyledDescription>{description}</StyledDescription>
       <CurrentWeatherDetails>
-        <span>Feels like 14°</span>
-        <span>Wind 14 km\h</span>
-        <span>Visibility 20 km</span>
+        <span>Feels like {Math.ceil(feelsLike)}°</span>
+        <span>Wind {Math.ceil(wind)} km\h</span>
+        <span>Visibility {visibility / 1000} km</span>
       </CurrentWeatherDetails>
     </StyledCurrentWeather>
   )

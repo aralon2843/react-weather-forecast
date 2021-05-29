@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
   ${normalize}
   body {
     font-family: 'Montserrat', sans-serif;
-    color: #fff;
+    color: #ffffff;
     font-size: 14px;
   }
   p {

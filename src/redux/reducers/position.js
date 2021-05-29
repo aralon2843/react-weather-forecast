@@ -1,15 +1,15 @@
 const initialState = {
   lat: null,
-  long: null,
+  lon: null,
 }
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case 'SET_LOCATION':
+    case 'SET_POSITION':
       return {
         ...state,
         lat: payload.lat,
-        long: payload.long,
+        lon: payload.lon,
       }
     default:
       return state

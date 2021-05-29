@@ -21,8 +21,8 @@ export const StyledTemperature = styled.p`
 export const StyledWeatherIcon = styled.img`
   object-fit: cover;
   object-position: center;
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   margin-bottom: 15px;
 `
 

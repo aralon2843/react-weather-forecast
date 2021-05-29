@@ -1,15 +1,14 @@
 import styled from 'styled-components'
 
 export const StyledDailyForecast = styled.div`
-  margin-bottom: 25px;
+  max-width: 800px;
   overflow-y: hidden;
-  margin-bottom: 15px;
   -ms-overflow-style: none;
   scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
   }
-  margin-right: -4px;
+  margin: 0px auto;
 `
 export const StyledTitle = styled.h2`
   font-size: 18px;

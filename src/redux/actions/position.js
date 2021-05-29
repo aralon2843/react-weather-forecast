@@ -1,29 +1,29 @@
-const setLocation = (location) => {
-  debugger
+const setPosition = (location) => {
   return {
-    type: 'SET_LOCATION',
+    type: 'SET_POSITION',
     payload: { ...location },
   }
 }
 
-export const getLocation = () => {
+export const getPosition = () => {
   return (dispatch) => {
     navigator.geolocation.getCurrentPosition(
       (position) =>
         dispatch(
-          setLocation({
+          setPosition({
             lat: position.coords.latitude,
-            long: position.coords.longitude,
+            lon: position.coords.longitude,
           })
         ),
       () => {
         dispatch(
-          setLocation({
+          setPosition({
             lat: 55.751244,
-            long: 37.618423,
+            lon: 37.618423,
           })
         )
       }
     )
+
   }
 }
