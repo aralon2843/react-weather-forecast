@@ -24,7 +24,7 @@ const Container = styled.div`
 
 const App = () => {
   const dispatch = useDispatch()
-  
+
   const lat = useSelector((state) => state.position.lat)
   const lon = useSelector((state) => state.position.lon)
 
@@ -36,6 +36,7 @@ const App = () => {
       dispatch(getDailyWeather(lat, lon))
     }
   })
+
   return (
     <Wrapper>
       <Container>
