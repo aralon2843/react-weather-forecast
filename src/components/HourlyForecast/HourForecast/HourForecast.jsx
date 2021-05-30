@@ -18,7 +18,8 @@ function HourForecast(props) {
       <StyledPrecipitation>{props.precipitation}%</StyledPrecipitation>
       <StyledWind>{props.wind} km/h</StyledWind>
       <StyledTime>
-        {props.time === '00' ? '12' : props.time} {props.time < 12 ? 'am' : 'pm'}
+        {props.time === '00' ? '12' : props.time}{' '}
+        {props.time < 12 ? 'am' : 'pm'}
       </StyledTime>
     </StyledHourForecast>
   )

@@ -1,11 +1,8 @@
 import styled from 'styled-components'
 
 export const StyledHourForecast = styled.div`
-  min-width: 100px;
-  padding: 10px 15px 10px 5px;
-  min-width: 130px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 10px 10px 10px 5px;
+  min-width: 80px;
 `
 
 export const StyledImage = styled.img`
@@ -24,8 +21,8 @@ export const StyledTemperature = styled.p`
 export const StyledDescription = styled.p`
   font-size: 14px;
   margin-bottom: 15px;
-  max-width: 60px;
   min-height: 32px;
+  max-width: 60px;
 `
 
 export const StyledPrecipitation = styled.p`
