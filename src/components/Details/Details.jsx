@@ -1,5 +1,6 @@
 import { memo } from 'react'
 import { useSelector } from 'react-redux'
+import convertTime from '../../common/convertTime'
 import Flex from '../../common/Flex'
 import {
   StyledDetails,
@@ -13,15 +14,11 @@ import {
   StyledDescription,
 } from './Styles'
 
-const Details = memo(() => {
+const Details = memo((props) => {
   const days = useSelector((state) => state.dailyWeather.days)
-  const activeDay = useSelector((state) => state.dailyWeather.activeDay.date)
-
   const day = days.filter(
-    (day) => new Date(day.dt * 1000).toDateString() === activeDay
+    (day) => new Date(day.dt * 1000).toDateString() === props.activeDay
   )
-
-  const convertTime = (ts) => new Date(ts * 1000).toTimeString().substring(0, 5)
 
   const sunset = convertTime(day[0]?.sunset)
   const sunrise = convertTime(day[0]?.sunrise)

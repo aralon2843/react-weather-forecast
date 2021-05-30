@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   StyledHourForecast,
-  StyledPrecipitaion,
+  StyledPrecipitation,
   StyledTime,
   StyledWind,
   StyledDescription,
@@ -9,15 +9,17 @@ import {
   StyledImage,
 } from './Styles'
 
-function HourForecast() {
+function HourForecast(props) {
   return (
     <StyledHourForecast>
-      <StyledImage src='https://image.flaticon.com/icons/png/512/869/869869.png'></StyledImage>
-      <StyledTemperature>24°</StyledTemperature>
-      <StyledDescription>Mostly cloudy</StyledDescription>
-      <StyledPrecipitaion>9%</StyledPrecipitaion>
-      <StyledWind>12 km/h</StyledWind>
-      <StyledTime>3pm</StyledTime>
+      <StyledImage src={props.icon}></StyledImage>
+      <StyledTemperature>{props.temperature}°</StyledTemperature>
+      <StyledDescription>{props.description}</StyledDescription>
+      <StyledPrecipitation>{props.precipitation}%</StyledPrecipitation>
+      <StyledWind>{props.wind} km/h</StyledWind>
+      <StyledTime>
+        {props.time === '00' ? '12' : props.time} {props.time < 12 ? 'am' : 'pm'}
+      </StyledTime>
     </StyledHourForecast>
   )
 }

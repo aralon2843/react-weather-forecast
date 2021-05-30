@@ -20,6 +20,7 @@ export const StyledDayForecast = styled.div`
       border-top: 10px solid rgba(255, 255, 255, 0.3);
     }
   }
+  margin: 0px 5px;
 `
 export const StyledDate = styled.p`
   font-size: 16px;
@@ -31,7 +32,7 @@ export const StyledImage = styled.img`
   object-position: center;
   width: 70px;
   height: 70px;
-  // margin: -10px 0px -10px -15px;
+  margin: -10px 0px -10px -15px;
 `
 
 export const StyledTemperature = styled.p`

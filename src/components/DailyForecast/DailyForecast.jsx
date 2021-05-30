@@ -19,7 +19,7 @@ function DailyForecast() {
       <StyledTitle>Daily</StyledTitle>
       <StyledWrapper>
         <Flex justify='space-between'>
-          {days.map((day) => (
+          {days.slice(0, 5).map((day) => (
             <DayForecast
               onDayClick={() => onDayClick(day)}
               active={

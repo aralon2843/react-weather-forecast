@@ -31,3 +31,7 @@ export const StyledWrapper = styled.div`
     display: none;
   }
 `
+export const StyledSubtitle = styled.p`
+  font-size: 18px;
+  margin: 25px 0px;
+`

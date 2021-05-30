@@ -20,5 +20,12 @@ const API = {
       )
       .then((response) => response.data)
   },
+  getHourlyWeather: (lat, lon) => {
+    return axiosInstance
+      .get(
+        `forecast?lat=${lat}&lon=${lon}&units=metric&appid=34f0fb637a40be39e56e907408b59746`
+      )
+      .then((response) => response.data)
+  },
 }
 export default API

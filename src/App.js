@@ -9,11 +9,12 @@ import { getPosition } from './redux/actions/position'
 import background from './assets/images/background.jpg'
 import { getCurrentWeather } from './redux/actions/currentWeather'
 import { getDailyWeather } from './redux/actions/dailyWeather'
+import { getHourlyWeather } from './redux/actions/hourlyWeather'
 
 const Wrapper = styled.div`
   min-height: 100vh;
   overflow: hidden;
-  background: url(${background}) center/cover no-repeat;
+  background: url(${background}) top/cover no-repeat;
   padding: 0px 15px;
 `
 
@@ -28,13 +29,19 @@ const App = () => {
   const lat = useSelector((state) => state.position.lat)
   const lon = useSelector((state) => state.position.lon)
 
-  useEffect(() => {
-    console.log('update')
+  const activeDay = useSelector((state) => state.dailyWeather.activeDay.date)
+
+  const getWeather = () => {
     dispatch(getPosition())
     if (lat && lon) {
       dispatch(getCurrentWeather(lat, lon))
       dispatch(getDailyWeather(lat, lon))
+      dispatch(getHourlyWeather(lat, lon))
     }
+  }
+
+  useEffect(() => {
+    getWeather()
   })
 
   return (
@@ -42,8 +49,8 @@ const App = () => {
       <Container>
         <CurrentWeather />
         <DailyForecast />
-        <HourlyForecast />
-        <Details />
+        <HourlyForecast activeDay={activeDay} />
+        <Details activeDay={activeDay} />
       </Container>
     </Wrapper>
   )
