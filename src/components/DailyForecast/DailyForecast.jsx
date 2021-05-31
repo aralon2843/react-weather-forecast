@@ -1,18 +1,18 @@
-import React from 'react'
+import React, { memo, useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Flex from '../../common/Flex'
 import { setActiveDay } from '../../redux/actions/dailyWeather'
 import DayForecast from './DayForecast/DayForecast'
 import { StyledDailyForecast, StyledTitle, StyledWrapper } from './Styles'
 
-function DailyForecast() {
-  const { days, activeDay } = useSelector((state) => state.dailyWeather)
-
+const DailyForecast = memo((props) => {
   const dispatch = useDispatch()
 
-  const onDayClick = (day) => {
+  const onDayClick = useCallback((day) => {
     dispatch(setActiveDay(new Date(day.dt * 1000).toDateString()))
-  }
+  })
+  const days = useSelector((state) => state.dailyWeather.days)
+  const activeDay = useSelector((state) => state.dailyWeather.activeDay.date)
 
   return (
     <StyledDailyForecast>
@@ -23,7 +23,7 @@ function DailyForecast() {
             <DayForecast
               onDayClick={() => onDayClick(day)}
               active={
-                activeDay.date === new Date(day.dt * 1000).toDateString()
+               activeDay.date === new Date(day.dt * 1000).toDateString()
                   ? true
                   : false
               }
@@ -39,6 +39,6 @@ function DailyForecast() {
       </StyledWrapper>
     </StyledDailyForecast>
   )
-}
+})
 
 export default DailyForecast

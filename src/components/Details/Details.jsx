@@ -15,9 +15,11 @@ import {
 } from './Styles'
 
 const Details = memo((props) => {
+  const activeDay = useSelector((state) => state.dailyWeather.activeDay.date)
+
   const days = useSelector((state) => state.dailyWeather.days)
   const day = days.filter(
-    (day) => new Date(day.dt * 1000).toDateString() === props.activeDay
+    (day) => new Date(day.dt * 1000).toDateString() === activeDay
   )
 
   const sunset = convertTime(day[0]?.sunset)

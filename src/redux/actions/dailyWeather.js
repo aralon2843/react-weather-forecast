@@ -8,6 +8,16 @@ const setDailyWeather = (data) => {
     },
   }
 }
+
+const setLoad = (isLoad) => {
+  return {
+    type: 'SET_LOAD',
+    payload: {
+      isLoad,
+    },
+  }
+}
+
 export const setActiveDay = (day) => {
   return {
     type: 'SET_ACTIVE_DAY',
@@ -20,7 +30,9 @@ export const setActiveDay = (day) => {
 export const getDailyWeather = (lat, lon) => {
   return (dispatch) => {
     API.getDailyWeather(lat, lon).then((data) => {
+      dispatch(setLoad(false))
       dispatch(setDailyWeather(data))
+      dispatch(setLoad(true))
     })
   }
 }

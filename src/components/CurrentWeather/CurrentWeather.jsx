@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import Flex from '../../common/Flex'
+import CurrentWeatherLoader from './CurrentWeatherLoader'
 import {
   CurrentWeatherDetails,
   StyledCurrentWeather,
@@ -11,6 +12,8 @@ import {
 } from './Styles'
 
 const CurrentWeather = () => {
+  const isLoad = useSelector((state) => state.currentWeather.isLoad)
+
   const {
     country,
     city,
@@ -23,17 +26,28 @@ const CurrentWeather = () => {
   } = useSelector((state) => state.currentWeather)
   return (
     <StyledCurrentWeather>
-      <StyledLocation>{city}, {country}</StyledLocation>
-      <Flex align='center' justify='space-around'>
-        <StyledWeatherIcon src={`http://openweathermap.org/img/wn/${icon}@4x.png`} alt='weather icon'/>
-        <StyledTemperature>{Math.ceil(temperature)}°</StyledTemperature>
-      </Flex>
-      <StyledDescription>{description}</StyledDescription>
-      <CurrentWeatherDetails>
-        <span>Feels like {Math.ceil(feelsLike)}°</span>
-        <span>Wind {Math.ceil(wind)} km\h</span>
-        <span>Visibility {visibility / 1000} km</span>
-      </CurrentWeatherDetails>
+      {isLoad ? (
+        <>
+          <StyledLocation>
+            {city}, {country}
+          </StyledLocation>
+          <Flex align='center' justify='space-around'>
+            <StyledWeatherIcon
+              src={`http://openweathermap.org/img/wn/${icon}@4x.png`}
+              alt='weather icon'
+            />
+            <StyledTemperature>{Math.ceil(temperature)}°</StyledTemperature>
+          </Flex>
+          <StyledDescription>{description}</StyledDescription>
+          <CurrentWeatherDetails>
+            <span>Feels like {Math.ceil(feelsLike)}°</span>
+            <span>Wind {Math.ceil(wind)} km\h</span>
+            <span>Visibility {visibility / 1000} km</span>
+          </CurrentWeatherDetails>{' '}
+        </>
+      ) : (
+        <CurrentWeatherLoader />
+      )}
     </StyledCurrentWeather>
   )
 }

@@ -33,6 +33,7 @@ export const StyledWrapper = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+ 
 `
 
 export const StyledForecastLine = styled.div`
@@ -43,4 +44,8 @@ export const StyledForecastLine = styled.div`
 export const StyledSubtitle = styled.p`
   font-size: 18px;
   margin: 25px 0px;
+`
+
+export const GraphWrapper = styled.div`
+  min-height: 212px;
 `

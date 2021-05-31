@@ -1,5 +1,6 @@
 const initialState = {
   hours: [],
+  isLoad: false,
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -8,6 +9,11 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         hours: payload.hours.list,
+      }
+    case 'SET_LOAD':
+      return {
+        ...state,
+        isLoad: payload.isLoad,
       }
     default:
       return state

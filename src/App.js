@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { memo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import CurrentWeather from './components/CurrentWeather/CurrentWeather'
@@ -23,13 +23,11 @@ const Container = styled.div`
   max-width: 1200px;
 `
 
-const App = () => {
+const App = memo(() => {
   const dispatch = useDispatch()
 
   const lat = useSelector((state) => state.position.lat)
   const lon = useSelector((state) => state.position.lon)
-
-  const activeDay = useSelector((state) => state.dailyWeather.activeDay.date)
 
   const getWeather = () => {
     dispatch(getPosition())
@@ -49,11 +47,11 @@ const App = () => {
       <Container>
         <CurrentWeather />
         <DailyForecast />
-        <HourlyForecast activeDay={activeDay} />
-        <Details activeDay={activeDay} />
+        <HourlyForecast  />
+        <Details />
       </Container>
     </Wrapper>
   )
-}
+})
 
 export default App

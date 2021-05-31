@@ -2,6 +2,7 @@ const initialState = {
   days: [],
   activeDay: {
     date: new Date().toDateString(),
+    isLoad: false,
   },
 }
 
@@ -18,6 +19,11 @@ export default (state = initialState, { type, payload }) => {
         activeDay: {
           date: payload.date,
         },
+      }
+    case 'SET_LOAD':
+      return {
+        ...state,
+        isLoad: payload.isLoad,
       }
     default:
       return state

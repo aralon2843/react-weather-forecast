@@ -7,6 +7,7 @@ const initialState = {
   feelsLike: null,
   wind: null,
   visibility: null,
+  isLoad: false,
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -22,6 +23,11 @@ export default (state = initialState, { type, payload }) => {
         feelsLike: payload.main.feels_like,
         wind: payload.wind.speed,
         visibility: payload.visibility,
+      }
+    case 'SET_LOAD':
+      return {
+        ...state,
+        isLoad: payload.isLoad,
       }
     default:
       return state

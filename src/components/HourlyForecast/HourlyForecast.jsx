@@ -1,4 +1,5 @@
-import React from 'react'
+import Chart from './Chart/Chart'
+import React, { memo, useCallback, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import convertTime from '../../common/convertTime'
 import Flex from '../../common/Flex'
@@ -12,36 +13,68 @@ import {
   StyledForecastLine,
 } from './Styles'
 
-function HourlyForecast(props) {
-  const hourlyForecast = useSelector((state) => state.hourlyWeather.hours)
 
+const HourlyForecast = memo((props) => {
+  const activeDay = useSelector((state) => state.dailyWeather.activeDay.date)
+  const isLoad = useSelector((state) => state.hourlyWeather.isLoad)
+  const hourlyForecast = useSelector((state) => state.hourlyWeather.hours)
   const currentDayHourlyForecast = hourlyForecast.filter(
-    (hour) => new Date(hour.dt * 1000).toDateString() === props.activeDay
+    (hour) => new Date(hour.dt * 1000).toDateString() === activeDay
   )
+
+  const onSummaryClick = useCallback(() => {
+    setActiveButton('Summary')
+  })
+  const onDetailsClick = useCallback(() => {
+    setActiveButton('Details')
+  })
+
+  const [activeButton, setActiveButton] = useState('Details')
+
   return (
     <StyledHourlyForecast>
       <Flex justify='space-between' align='center'>
         <StyledTitle>Every 3 hours</StyledTitle>
         <Flex>
-          <StyledButton>Summary</StyledButton>
-          <StyledButton active>Details</StyledButton>
+          <StyledButton
+            active={activeButton === 'Summary' ? true : false}
+            onClick={onSummaryClick}>
+            Summary
+          </StyledButton>
+          <StyledButton
+            active={activeButton === 'Details' ? true : false}
+            onClick={onDetailsClick}>
+            Details
+          </StyledButton>
         </Flex>
       </Flex>
       <StyledWrapper>
         {currentDayHourlyForecast.length > 0 ? (
-          <StyledForecastLine>
-            {currentDayHourlyForecast.map((hour) => (
-              <HourForecast
-                icon={`http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`}
-                temperature={Math.round(hour.main.temp)}
-                description={hour.weather[0].description}
-                precipitation={hour.main.humidity}
-                wind={Math.round(hour.wind.speed)}
-                time={convertTime(hour.dt).substring(0, 2)}
-                key={hour.dt}
-              />
-            ))}
-          </StyledForecastLine>
+          activeButton === 'Details' ? (
+            <StyledForecastLine>
+              {currentDayHourlyForecast.map((hour) => (
+                <HourForecast
+                  icon={`http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`}
+                  temperature={Math.round(hour.main.temp)}
+                  description={hour.weather[0].description}
+                  precipitation={hour.main.humidity}
+                  wind={Math.round(hour.wind.speed)}
+                  time={convertTime(hour.dt).substring(0, 2)}
+                  key={hour.dt}
+                />
+              ))}
+            </StyledForecastLine>
+          ) : (
+            <Chart
+              data={currentDayHourlyForecast.map((hour) => ({
+                time:
+                  convertTime(hour.dt).substring(0, 2) < 12
+                    ? convertTime(hour.dt).substring(0, 2) + ' am'
+                    : convertTime(hour.dt).substring(0, 2) + ' pm',
+                temperature: Math.round(hour.main.temp),
+              }))}
+            />
+          )
         ) : (
           <StyledSubtitle>
             Sorry, no weather for the next 3 hours
@@ -50,6 +83,6 @@ function HourlyForecast(props) {
       </StyledWrapper>
     </StyledHourlyForecast>
   )
-}
+})
 
 export default HourlyForecast
