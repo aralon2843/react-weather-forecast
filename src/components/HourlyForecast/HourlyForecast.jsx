@@ -13,7 +13,6 @@ import {
   StyledForecastLine,
 } from './Styles'
 
-
 const HourlyForecast = memo((props) => {
   const activeDay = useSelector((state) => state.dailyWeather.activeDay.date)
   const isLoad = useSelector((state) => state.hourlyWeather.isLoad)
@@ -51,7 +50,10 @@ const HourlyForecast = memo((props) => {
       <StyledWrapper>
         {currentDayHourlyForecast.length > 0 ? (
           activeButton === 'Details' ? (
-            <StyledForecastLine>
+            <StyledForecastLine
+              justify={
+                currentDayHourlyForecast.length < 6 ? 'start' : 'space-between'
+              }>
               {currentDayHourlyForecast.map((hour) => (
                 <HourForecast
                   icon={`http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`}
@@ -67,11 +69,8 @@ const HourlyForecast = memo((props) => {
           ) : (
             <Chart
               data={currentDayHourlyForecast.map((hour) => ({
-                time:
-                  convertTime(hour.dt).substring(0, 2) < 12
-                    ? convertTime(hour.dt).substring(0, 2) + ' am'
-                    : convertTime(hour.dt).substring(0, 2) + ' pm',
-                temperature: Math.round(hour.main.temp),
+                time: convertTime(hour.dt).substring(0, 2),
+                temperature: hour.main.temp,
               }))}
             />
           )

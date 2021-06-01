@@ -13,7 +13,6 @@ const DailyForecast = memo((props) => {
   })
   const days = useSelector((state) => state.dailyWeather.days)
   const activeDay = useSelector((state) => state.dailyWeather.activeDay.date)
-
   return (
     <StyledDailyForecast>
       <StyledTitle>Daily</StyledTitle>
@@ -23,7 +22,7 @@ const DailyForecast = memo((props) => {
             <DayForecast
               onDayClick={() => onDayClick(day)}
               active={
-               activeDay.date === new Date(day.dt * 1000).toDateString()
+               activeDay === new Date(day.dt * 1000).toDateString()
                   ? true
                   : false
               }

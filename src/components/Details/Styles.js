@@ -12,15 +12,24 @@ export const StyledDescription = styled.p`
 
 export const StyledSun = styled.div`
   border-top: 1px solid rgba(255, 255, 255, 0.5);
-  margin-right: 35px;
+  margin-right: 15px;
   font-size: 24px;
   line-height: 30px;
+  min-width: 130px;
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `
 
 export const StyledMoon = styled.div`
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   font-size: 24px;
   line-height: 30px;
+  min-width: 130px;
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+  
 `
 
 export const StyledSunrise = styled.div`

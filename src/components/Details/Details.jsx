@@ -25,7 +25,7 @@ const Details = memo((props) => {
   const sunset = convertTime(day[0]?.sunset)
   const sunrise = convertTime(day[0]?.sunrise)
   const moonset = convertTime(day[0]?.moonset)
-  const moonrise = convertTime(day[0]?.moonset)
+  const moonrise = convertTime(day[0]?.moonrise)
 
   return (
     <StyledDetails>

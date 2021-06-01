@@ -1,10 +1,22 @@
-import { memo, useEffect } from 'react'
+import { defaults } from 'react-chartjs-2'
+import { memo } from 'react'
 import { Line } from 'react-chartjs-2'
 import { GraphWrapper } from '../Styles'
 
 const Chart = memo((props) => {
+  defaults.color = '#fff'
+  defaults.font.family = "'Montserrat', 'sans-serif'"
+  defaults.font.weight = 500
+
   const data = {
-    labels: props.data.map((hour) => hour.time),
+    labels: props.data.map((hour) =>
+      hour.time === '00'
+        ? '12 am'
+        : hour.time < 12
+        ? hour.time + ' am'
+        : hour.time + ' pm'
+    ),
+    scaleFontColor: '#ffffff',
     datasets: [
       {
         label: 'temperature',
@@ -17,15 +29,7 @@ const Chart = memo((props) => {
   }
 
   const options = {
-    scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
-          },
-        },
-      ],
-    },
+    defaultFontColor: '#FFFFFF',
     maintainAspectRatio: false,
   }
 

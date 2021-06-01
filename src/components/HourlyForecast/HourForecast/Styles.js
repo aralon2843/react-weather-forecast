@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const StyledHourForecast = styled.div`
   padding: 10px 10px 10px 5px;
   min-width: 80px;
+  flex: 0 1 135px;
 `
 
 export const StyledImage = styled.img`
@@ -28,11 +29,18 @@ export const StyledDescription = styled.p`
 export const StyledPrecipitation = styled.p`
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 5px;
+  background: url(${props => props.humidity}) left/cover no-repeat;
+  background-size: 15px;
+  padding-left: 20px;
 `
 
 export const StyledWind = styled.p`
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 15px;
+  background: url(${props => props.wind})
+    left/cover no-repeat;
+  background-size: 15px;
+  padding-left: 20px;
 `
 
 export const StyledTime = styled.p`

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const StyledDayForecast = styled.div`
   padding: 5px 15px 10px 5px;
-  min-width: 100px;
+  min-width: 95px;
   max-width: 125px;
   cursor: pointer;
   &:hover {

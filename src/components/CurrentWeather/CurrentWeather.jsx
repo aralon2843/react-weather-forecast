@@ -42,7 +42,7 @@ const CurrentWeather = () => {
           <CurrentWeatherDetails>
             <span>Feels like {Math.ceil(feelsLike)}°</span>
             <span>Wind {Math.ceil(wind)} km\h</span>
-            <span>Visibility {visibility / 1000} km</span>
+            <span>Visibility {visibility % 10} km</span>
           </CurrentWeatherDetails>{' '}
         </>
       ) : (

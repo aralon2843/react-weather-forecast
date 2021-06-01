@@ -23,6 +23,8 @@ export const StyledButton = styled.button`
   }
   cursor: pointer;
   margin-right: 15px;
+  font-weight: 500;
+  color: #262626;
 `
 export const StyledWrapper = styled.div`
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
@@ -33,12 +35,11 @@ export const StyledWrapper = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
- 
 `
 
 export const StyledForecastLine = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${(props) => props.justify};
 `
 
 export const StyledSubtitle = styled.p`
