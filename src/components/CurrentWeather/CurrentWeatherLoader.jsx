@@ -4,11 +4,11 @@ import ContentLoader from "react-content-loader"
 const CurrentWeatherLoader = (props) => (
   <ContentLoader 
     speed={2}
-    width={400}
-    height={220}
-    viewBox="0 0 400 200"
-    backgroundColor="rgba(255, 255, 255, 0.3)"
-    foregroundColor="#ecebeb"
+    width={270}
+    height={160}
+    viewBox="0 0 270 160"
+    backgroundColor='rgba(255, 255, 255, 0.2)'
+    foregroundColor='rgba(255, 255, 255, 0.4)'
     {...props}
   >
     <rect x="35" y="2" rx="10" ry="10" width="110" height="20" /> 

@@ -29,7 +29,6 @@ export const StyledMoon = styled.div`
   @media (max-width: 768px) {
     font-size: 20px;
   }
-  
 `
 
 export const StyledSunrise = styled.div`

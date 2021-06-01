@@ -39,7 +39,7 @@ export const StyledWrapper = styled.div`
 
 export const StyledForecastLine = styled.div`
   display: flex;
-  justify-content: ${(props) => props.justify};
+  justify-content: ${(props) => props.isLoad ? props.justify : 'center'};
 `
 
 export const StyledSubtitle = styled.p`

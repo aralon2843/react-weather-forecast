@@ -12,6 +12,7 @@ import {
   StyledWrapper,
   StyledForecastLine,
 } from './Styles'
+import Loader from '../../common/Loader/Loader'
 
 const HourlyForecast = memo((props) => {
   const activeDay = useSelector((state) => state.dailyWeather.activeDay.date)
@@ -48,36 +49,43 @@ const HourlyForecast = memo((props) => {
         </Flex>
       </Flex>
       <StyledWrapper>
-        {currentDayHourlyForecast.length > 0 ? (
-          activeButton === 'Details' ? (
-            <StyledForecastLine
-              justify={
-                currentDayHourlyForecast.length < 6 ? 'start' : 'space-between'
-              }>
-              {currentDayHourlyForecast.map((hour) => (
-                <HourForecast
-                  icon={`http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`}
-                  temperature={Math.round(hour.main.temp)}
-                  description={hour.weather[0].description}
-                  precipitation={hour.main.humidity}
-                  wind={Math.round(hour.wind.speed)}
-                  time={convertTime(hour.dt).substring(0, 2)}
-                  key={hour.dt}
-                />
-              ))}
-            </StyledForecastLine>
+        {isLoad ? (
+          currentDayHourlyForecast.length > 0 ? (
+            activeButton === 'Details' ? (
+              <StyledForecastLine
+              isLoad={isLoad}
+                justify={
+                  currentDayHourlyForecast.length < 6
+                    ? 'start'
+                    : 'space-between'
+                }>
+                {currentDayHourlyForecast.map((hour) => (
+                  <HourForecast
+                    icon={`http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`}
+                    temperature={Math.round(hour.main.temp)}
+                    description={hour.weather[0].description}
+                    precipitation={hour.main.humidity}
+                    wind={Math.round(hour.wind.speed)}
+                    time={convertTime(hour.dt).substring(0, 2)}
+                    key={hour.dt}
+                  />
+                ))}
+              </StyledForecastLine>
+            ) : (
+              <Chart
+                data={currentDayHourlyForecast.map((hour) => ({
+                  time: convertTime(hour.dt).substring(0, 2),
+                  temperature: hour.main.temp,
+                }))}
+              />
+            )
           ) : (
-            <Chart
-              data={currentDayHourlyForecast.map((hour) => ({
-                time: convertTime(hour.dt).substring(0, 2),
-                temperature: hour.main.temp,
-              }))}
-            />
+            <StyledSubtitle>
+              Sorry, no weather for the next 3 hours
+            </StyledSubtitle>
           )
         ) : (
-          <StyledSubtitle>
-            Sorry, no weather for the next 3 hours
-          </StyledSubtitle>
+          <Loader />
         )}
       </StyledWrapper>
     </StyledHourlyForecast>
