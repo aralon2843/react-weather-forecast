@@ -3,7 +3,7 @@ const initialState = {
   lon: null,
 }
 
-export default (state = initialState, { type, payload }) => {
+const Position = (state = initialState, { type, payload }) => {
   switch (type) {
     case 'SET_POSITION':
       return {
@@ -15,3 +15,5 @@ export default (state = initialState, { type, payload }) => {
       return state
   }
 }
+
+export default Position

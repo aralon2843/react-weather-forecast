@@ -6,7 +6,7 @@ const initialState = {
   },
 }
 
-export default (state = initialState, { type, payload }) => {
+const DailyWeather = (state = initialState, { type, payload }) => {
   switch (type) {
     case 'SET_DAILY_WEATHER':
       return {
@@ -29,3 +29,5 @@ export default (state = initialState, { type, payload }) => {
       return state
   }
 }
+
+export default DailyWeather

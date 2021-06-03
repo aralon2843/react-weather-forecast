@@ -11,7 +11,7 @@ import {
 import humidity from '../../../assets/icons/humidity.svg'
 import wind from '../../../assets/icons/wind.svg'
 
-function HourForecast(props) {
+const HourForecast = (props) => {
   return (
     <StyledHourForecast>
       <StyledImage src={props.icon}></StyledImage>

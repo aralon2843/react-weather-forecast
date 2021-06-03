@@ -3,7 +3,7 @@ const initialState = {
   isLoad: false,
 }
 
-export default (state = initialState, { type, payload }) => {
+const HourlyWeather = (state = initialState, { type, payload }) => {
   switch (type) {
     case 'SET_HOURLY_WEATHER':
       return {
@@ -19,3 +19,5 @@ export default (state = initialState, { type, payload }) => {
       return state
   }
 }
+
+export default HourlyWeather

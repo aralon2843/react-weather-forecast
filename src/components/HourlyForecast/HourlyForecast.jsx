@@ -1,5 +1,5 @@
 import Chart from './Chart/Chart'
-import React, { memo, useCallback, useEffect, useState } from 'react'
+import React, { memo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import convertTime from '../../common/convertTime'
 import Flex from '../../common/Flex'
@@ -22,12 +22,9 @@ const HourlyForecast = memo((props) => {
     (hour) => new Date(hour.dt * 1000).toDateString() === activeDay
   )
 
-  const onSummaryClick = useCallback(() => {
-    setActiveButton('Summary')
-  })
-  const onDetailsClick = useCallback(() => {
-    setActiveButton('Details')
-  })
+  const onSummaryClick = () => setActiveButton('Summary')
+
+  const onDetailsClick = () => setActiveButton('Details')
 
   const [activeButton, setActiveButton] = useState('Details')
 
@@ -53,7 +50,7 @@ const HourlyForecast = memo((props) => {
           currentDayHourlyForecast.length > 0 ? (
             activeButton === 'Details' ? (
               <StyledForecastLine
-              isLoad={isLoad}
+                isLoad={isLoad}
                 justify={
                   currentDayHourlyForecast.length < 6
                     ? 'start'

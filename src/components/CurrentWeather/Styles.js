@@ -4,7 +4,7 @@ export const StyledCurrentWeather = styled.div`
   text-align: center;
   max-width: 270px;
   margin: 0px auto;
-  margin-top: 15px;
+  margin-top: 12px;
   margin-bottom: 20px;
 `
 export const StyledLocation = styled.p`
