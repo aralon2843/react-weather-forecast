@@ -10,6 +10,7 @@ import background from './assets/images/background.jpg'
 import { getCurrentWeather } from './redux/actions/currentWeather'
 import { getDailyWeather } from './redux/actions/dailyWeather'
 import { getHourlyWeather } from './redux/actions/hourlyWeather'
+import Search from './components/Search/Search'
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -46,6 +47,7 @@ const App = memo(() => {
     <Wrapper>
       <Container>
         <CurrentWeather />
+        <Search />
         <DailyForecast />
         <HourlyForecast  />
         <Details />

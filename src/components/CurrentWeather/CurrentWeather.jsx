@@ -36,13 +36,13 @@ const CurrentWeather = () => {
               src={`http://openweathermap.org/img/wn/${icon}@4x.png`}
               alt='weather icon'
             />
-            <StyledTemperature>{Math.ceil(temperature)}°</StyledTemperature>
+            <StyledTemperature>{Math.round(temperature)}°</StyledTemperature>
           </Flex>
           <StyledDescription>{description}</StyledDescription>
           <CurrentWeatherDetails>
-            <span>Feels like {Math.ceil(feelsLike)}°</span>
-            <span>Wind {Math.ceil(wind)} km\h</span>
-            <span>Visibility {visibility % 10} km</span>
+            <span>Feels like {Math.round(feelsLike)}°</span>
+            <span>Wind {Math.round(wind)} km\h</span>
+            <span>Visibility {visibility / 1000} km</span>
           </CurrentWeatherDetails>{' '}
         </>
       ) : (
