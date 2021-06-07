@@ -1,5 +1,5 @@
 import { memo, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import CurrentWeather from './components/CurrentWeather/CurrentWeather'
 import DailyForecast from './components/DailyForecast/DailyForecast'
@@ -27,20 +27,29 @@ const Container = styled.div`
 const App = memo(() => {
   const dispatch = useDispatch()
 
-  const lat = useSelector((state) => state.position.lat)
-  const lon = useSelector((state) => state.position.lon)
+  const { lat, lon } = useSelector((state) => state.position, shallowEqual)
 
-  const getWeather = () => {
-    dispatch(getPosition())
-    if (lat && lon) {
-      dispatch(getCurrentWeather(lat, lon))
-      dispatch(getDailyWeather(lat, lon))
-      dispatch(getHourlyWeather(lat, lon))
-    }
+  const searchValue = useSelector((state) => state.search.searchCity)
+
+  const getWeatherByPosition = () => {
+    dispatch(getCurrentWeather(lat, lon))
+    dispatch(getDailyWeather(lat, lon))
+    dispatch(getHourlyWeather(lat, lon))
+  }
+
+  const getWeatherBySearch = (searchValue) => {
+    dispatch(getCurrentWeather(null, null, searchValue))
+    dispatch(getHourlyWeather(null, null, searchValue))
   }
 
   useEffect(() => {
-    getWeather()
+    dispatch(getPosition())
+    if (lat && lon && searchValue === null) {
+      getWeatherByPosition()
+    }
+    if (searchValue !== null) {
+      getWeatherBySearch(searchValue)
+    }
   })
 
   return (
@@ -49,7 +58,7 @@ const App = memo(() => {
         <CurrentWeather />
         <Search />
         <DailyForecast />
-        <HourlyForecast  />
+        <HourlyForecast />
         <Details />
       </Container>
     </Wrapper>

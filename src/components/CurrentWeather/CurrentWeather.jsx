@@ -43,7 +43,7 @@ const CurrentWeather = () => {
             <span>Feels like {Math.round(feelsLike)}°</span>
             <span>Wind {Math.round(wind)} km\h</span>
             <span>Visibility {visibility / 1000} km</span>
-          </CurrentWeatherDetails>{' '}
+          </CurrentWeatherDetails>
         </>
       ) : (
         <CurrentWeatherLoader />

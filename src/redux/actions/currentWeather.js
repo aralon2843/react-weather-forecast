@@ -1,4 +1,5 @@
 import API from '../../services/api'
+import { setCoordsBySearch } from './dailyWeather'
 
 const setCurrentWeather = (data) => {
   return {
@@ -18,11 +19,12 @@ const setLoad = (isLoad) => {
   }
 }
 
-export const getCurrentWeather = (lat, lon) => {
+export const getCurrentWeather = (lat, lon, city) => {
   return (dispatch) => {
-    API.getCurrentWeather(lat, lon).then((data) => {
+    API.getCurrentWeather(lat, lon, city).then((data) => {
       dispatch(setLoad(false))
       dispatch(setCurrentWeather(data))
+      dispatch(setCoordsBySearch(data.coord))
       dispatch(setLoad(true))
     })
   }

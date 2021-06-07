@@ -1,12 +1,12 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Flex from '../../common/Flex'
-import { setActiveDay } from '../../redux/actions/dailyWeather'
+import { getDailyWeather, setActiveDay } from '../../redux/actions/dailyWeather'
 import DayForecast from './DayForecast/DayForecast'
 import DayForecastLoader from './DayForecast/DayForecastLoader'
 import { StyledDailyForecast, StyledTitle, StyledWrapper } from './Styles'
 
-const DailyForecast = memo((props) => {
+const DailyForecast = memo(() => {
   const dispatch = useDispatch()
 
   const onDayClick = (day) =>
@@ -15,8 +15,21 @@ const DailyForecast = memo((props) => {
   const days = useSelector((state) => state.dailyWeather.days)
   const activeDay = useSelector((state) => state.dailyWeather.activeDay.date)
 
-  const isLoad = useSelector((state) => state.currentWeather.isLoad)
+  const isLoad = useSelector((state) => state.dailyWeather.isLoad)
 
+  const latBySearch = useSelector((state) => state.dailyWeather.coords.lat)
+  const lonBySearch = useSelector((state) => state.dailyWeather.coords.lon)
+
+  useEffect(() => {
+    if (
+      latBySearch &&
+      latBySearch !== null &&
+      lonBySearch &&
+      lonBySearch !== null
+    ) {
+      dispatch(getDailyWeather(latBySearch, lonBySearch))
+    }
+  }, [dispatch, latBySearch, lonBySearch])
   return (
     <StyledDailyForecast>
       <StyledTitle>Daily</StyledTitle>

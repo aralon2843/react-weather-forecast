@@ -1,8 +1,8 @@
-export const setSearchCountry = (searchCountry) => {
+export const setSearchCity = (searchCity) => {
   return {
-    type: 'SET_SEARCH_COUNTRY',
+    type: 'SET_SEARCH_CITY',
     payload: {
-      searchCountry,
+      searchCity,
     },
   }
 }

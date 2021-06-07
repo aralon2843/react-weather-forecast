@@ -26,10 +26,18 @@ export const setActiveDay = (day) => {
     },
   }
 }
-
-export const getDailyWeather = (lat, lon) => {
+export const setCoordsBySearch = (coords) => {
+  return {
+    type: 'SET_COORDS_BY_SEARCH',
+    payload: {
+      lat: coords.lat,
+      lon: coords.lon,
+    },
+  }
+}
+export const getDailyWeather = (lat, lon, city) => {
   return (dispatch) => {
-    API.getDailyWeather(lat, lon).then((data) => {
+    API.getDailyWeather(lat, lon, city).then((data) => {
       dispatch(setLoad(false))
       dispatch(setDailyWeather(data))
       dispatch(setLoad(true))

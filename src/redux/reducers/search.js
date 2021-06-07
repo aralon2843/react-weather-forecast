@@ -1,14 +1,15 @@
 const initialState = {
-  searchCountry: null,
+  searchCity: null,
 }
 
 const search = (state = initialState, { type, payload }) => {
   switch (type) {
-    case 'SET_SEARCH_COUNTRY':
+    case 'SET_SEARCH_CITY':
       return {
         ...state,
-        searchCountry: payload.searchCountry,
+        searchCity: payload.searchCity,
       }
+
     default:
       return state
   }

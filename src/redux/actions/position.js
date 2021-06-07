@@ -1,4 +1,4 @@
-const setPosition = (location) => {
+export const setPosition = (location) => {
   return {
     type: 'SET_POSITION',
     payload: { ...location },

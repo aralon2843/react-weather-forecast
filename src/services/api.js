@@ -5,25 +5,35 @@ const axiosInstance = axios.create({
 })
 
 const API = {
-  getCurrentWeather: (lat, lon) => {
+  getCurrentWeather: (lat, lon, city = null) => {
+    console.log(lon, lat, city)
     return axiosInstance
       .get(
-        `weather?lat=${lat}&lon=${lon}&units=metric&appid=34f0fb637a40be39e56e907408b59746`
+        `weather?${
+          lat !== null && lon !== null ? 'lat=' + lat + `&lon=` + lon : ''
+        }${
+          city !== null ? `&q=` + city : ''
+        }&units=metric&appid=34f0fb637a40be39e56e907408b59746`
       )
       .then((response) => response.data)
   },
-
   getDailyWeather: (lat, lon) => {
+    console.log(lon, lat)
     return axiosInstance
       .get(
         `onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts,current&units=metric&appid=34f0fb637a40be39e56e907408b59746`
       )
       .then((response) => response.data)
   },
-  getHourlyWeather: (lat, lon) => {
+  getHourlyWeather: (lat, lon, city = null) => {
+    console.log(lon, lat, city)
     return axiosInstance
       .get(
-        `forecast?lat=${lat}&lon=${lon}&units=metric&appid=34f0fb637a40be39e56e907408b59746`
+        `forecast?${
+          lat !== null && lon !== null ? 'lat=' + lat + `&lon=` + lon : ''
+        }${
+          city !== null && city ? `q=` + city : ''
+        }&units=metric&appid=34f0fb637a40be39e56e907408b59746`
       )
       .then((response) => response.data)
   },

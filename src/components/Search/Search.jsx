@@ -2,18 +2,17 @@ import { StyledSearch, StyledSearchWrapper } from './Styles'
 import search from '../../assets/icons/search.svg'
 import { useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setSearchCountry } from '../../redux/actions/search'
+import { setSearchCity } from '../../redux/actions/search'
 
 const Search = () => {
   const searchRef = useRef()
-  const [searchValue, setSearchValue] = useState('')
+  const [searchValue, setSearchValue] = useState(null)
   const dispatch = useDispatch()
 
   const onSubmitHandler = (event) => {
     event.preventDefault()
-    console.log(searchValue)
     setSearchValue('')
-    dispatch(setSearchCountry(searchValue))
+    dispatch(setSearchCity(searchValue))
   }
   const onChangeHandler = () => {
     setSearchValue(searchRef.current.value)

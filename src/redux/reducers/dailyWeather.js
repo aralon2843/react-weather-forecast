@@ -4,6 +4,10 @@ const initialState = {
     date: new Date().toDateString(),
     isLoad: false,
   },
+  coords: {
+    lat: null,
+    lon: null,
+  },
 }
 
 const DailyWeather = (state = initialState, { type, payload }) => {
@@ -20,6 +24,15 @@ const DailyWeather = (state = initialState, { type, payload }) => {
           date: payload.date,
         },
       }
+    case 'SET_COORDS_BY_SEARCH': {
+      return {
+        ...state,
+        coords: {
+          lat: payload.lat,
+          lon: payload.lon,
+        },
+      }
+    }
     case 'SET_LOAD':
       return {
         ...state,
