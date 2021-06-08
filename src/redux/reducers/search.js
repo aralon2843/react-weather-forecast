@@ -1,5 +1,6 @@
 const initialState = {
   searchCity: null,
+  isResponseSuccessful: true,
 }
 
 const search = (state = initialState, { type, payload }) => {
@@ -9,7 +10,11 @@ const search = (state = initialState, { type, payload }) => {
         ...state,
         searchCity: payload.searchCity,
       }
-
+    case 'SET_RESPONSE':
+      return {
+        ...state,
+        isResponseSuccessful: payload.isResponseSuccessful,
+      }
     default:
       return state
   }

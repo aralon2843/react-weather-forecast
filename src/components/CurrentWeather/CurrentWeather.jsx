@@ -12,8 +12,6 @@ import {
 } from './Styles'
 
 const CurrentWeather = () => {
-  const isLoad = useSelector((state) => state.currentWeather.isLoad)
-
   const {
     country,
     city,
@@ -24,6 +22,8 @@ const CurrentWeather = () => {
     visibility,
     wind,
   } = useSelector((state) => state.currentWeather)
+
+  const isLoad = useSelector((state) => state.currentWeather.isLoad)
   return (
     <StyledCurrentWeather>
       {isLoad ? (

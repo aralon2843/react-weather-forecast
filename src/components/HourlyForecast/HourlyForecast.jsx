@@ -14,19 +14,22 @@ import {
 } from './Styles'
 import Loader from '../../common/Loader/Loader'
 
-const HourlyForecast = memo((props) => {
+const HourlyForecast = memo(() => {
   const activeDay = useSelector((state) => state.dailyWeather.activeDay.date)
+
   const isLoad = useSelector((state) => state.hourlyWeather.isLoad)
+
   const hourlyForecast = useSelector((state) => state.hourlyWeather.hours)
+
   const currentDayHourlyForecast = hourlyForecast.filter(
     (hour) => new Date(hour.dt * 1000).toDateString() === activeDay
   )
 
+  const [activeButton, setActiveButton] = useState('Details')
+
   const onSummaryClick = () => setActiveButton('Summary')
 
   const onDetailsClick = () => setActiveButton('Details')
-
-  const [activeButton, setActiveButton] = useState('Details')
 
   return (
     <StyledHourlyForecast>

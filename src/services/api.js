@@ -6,7 +6,6 @@ const axiosInstance = axios.create({
 
 const API = {
   getCurrentWeather: (lat, lon, city = null) => {
-    console.log(lon, lat, city)
     return axiosInstance
       .get(
         `weather?${
@@ -16,9 +15,9 @@ const API = {
         }&units=metric&appid=34f0fb637a40be39e56e907408b59746`
       )
       .then((response) => response.data)
+      .catch(() => 404)
   },
   getDailyWeather: (lat, lon) => {
-    console.log(lon, lat)
     return axiosInstance
       .get(
         `onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts,current&units=metric&appid=34f0fb637a40be39e56e907408b59746`
@@ -26,7 +25,6 @@ const API = {
       .then((response) => response.data)
   },
   getHourlyWeather: (lat, lon, city = null) => {
-    console.log(lon, lat, city)
     return axiosInstance
       .get(
         `forecast?${

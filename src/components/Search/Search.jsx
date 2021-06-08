@@ -1,22 +1,26 @@
-import { StyledSearch, StyledSearchWrapper } from './Styles'
+import { StyledErrorMessage, StyledSearch, StyledSearchWrapper } from './Styles'
 import search from '../../assets/icons/search.svg'
 import { useRef, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setSearchCity } from '../../redux/actions/search'
 
 const Search = () => {
   const searchRef = useRef()
-  const [searchValue, setSearchValue] = useState(null)
+  const [searchValue, setSearchValue] = useState('')
   const dispatch = useDispatch()
 
   const onSubmitHandler = (event) => {
     event.preventDefault()
     setSearchValue('')
-    dispatch(setSearchCity(searchValue))
+    dispatch(setSearchCity(searchValue.trim()))
   }
   const onChangeHandler = () => {
     setSearchValue(searchRef.current.value)
   }
+  const isResponseSuccessful = useSelector(
+    (state) => state.search.isResponseSuccessful
+  )
+
   return (
     <StyledSearchWrapper>
       <form
@@ -31,6 +35,13 @@ const Search = () => {
           value={searchValue}
         />
       </form>
+      {isResponseSuccessful ? (
+        ''
+      ) : (
+        <StyledErrorMessage>
+          Ошибка. Неправильное название города
+        </StyledErrorMessage>
+      )}
     </StyledSearchWrapper>
   )
 }

@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react'
+import { memo, useCallback, useEffect } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import CurrentWeather from './components/CurrentWeather/CurrentWeather'
@@ -31,16 +31,19 @@ const App = memo(() => {
 
   const searchValue = useSelector((state) => state.search.searchCity)
 
-  const getWeatherByPosition = () => {
+  const getWeatherByPosition = useCallback(() => {
     dispatch(getCurrentWeather(lat, lon))
     dispatch(getDailyWeather(lat, lon))
     dispatch(getHourlyWeather(lat, lon))
-  }
+  }, [lat, lon])
 
-  const getWeatherBySearch = (searchValue) => {
-    dispatch(getCurrentWeather(null, null, searchValue))
-    dispatch(getHourlyWeather(null, null, searchValue))
-  }
+  const getWeatherBySearch = useCallback(
+    (searchValue) => {
+      dispatch(getCurrentWeather(null, null, searchValue))
+      dispatch(getHourlyWeather(null, null, searchValue))
+    },
+    [searchValue]
+  )
 
   useEffect(() => {
     dispatch(getPosition())

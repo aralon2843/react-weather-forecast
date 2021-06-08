@@ -6,3 +6,12 @@ export const setSearchCity = (searchCity) => {
     },
   }
 }
+
+export const setResponse = (isResponseSuccessful) => {
+  return {
+    type: 'SET_RESPONSE',
+    payload: {
+      isResponseSuccessful,
+    },
+  }
+}

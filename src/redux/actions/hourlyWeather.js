@@ -20,10 +20,10 @@ const setLoad = (isLoad) => {
 
 export const getHourlyWeather = (lat, lon, city) => {
   return (dispatch) => {
+    dispatch(setLoad(false))
     API.getHourlyWeather(lat, lon, city).then((data) => {
-      dispatch(setLoad(false))
       dispatch(setHourlyWeather(data))
-      dispatch(setLoad(true))
     })
+    dispatch(setLoad(true))
   }
 }
