@@ -47,7 +47,7 @@ export const StyledDescription = styled.p`
 export const StyledPrecipitation = styled.p`
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 5px;
-  background: url(${props => props.humidity}) left/cover no-repeat;
+  background: url(${(props) => props.humidity}) left/cover no-repeat;
   background-size: 15px;
   padding-left: 20px;
 `
@@ -55,8 +55,7 @@ export const StyledPrecipitation = styled.p`
 export const StyledWind = styled.p`
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 8px;
-  background: url(${props => props.wind})
-    left/cover no-repeat;
+  background: url(${(props) => props.wind}) left/cover no-repeat;
   background-size: 15px;
   padding-left: 20px;
 `

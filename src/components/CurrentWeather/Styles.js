@@ -4,7 +4,7 @@ export const StyledCurrentWeather = styled.div`
   text-align: center;
   max-width: 270px;
   margin: 0px auto;
-  margin-top: 12px;
+  margin-top: 10px;
   margin-bottom: 20px;
 `
 export const StyledLocation = styled.p`
@@ -37,4 +37,3 @@ export const CurrentWeatherDetails = styled.div`
     margin-right: 0px;
   }
 `
-

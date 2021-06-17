@@ -33,23 +33,30 @@ const Details = memo((props) => {
     <StyledDetails>
       <StyledTitle>Day Details</StyledTitle>
       <Flex>
-        {' '}
         {isLoad ? (
           <StyledSun>
-            <StyledDescription>Sunrise</StyledDescription>
-            <StyledSunrise>{sunrise} AM</StyledSunrise>
-            <StyledDescription>Sunset</StyledDescription>
-            <StyledSunset>{sunset} PM</StyledSunset>
+            <div>
+              <StyledDescription>Sunrise</StyledDescription>
+              <StyledSunrise>{sunrise} AM</StyledSunrise>
+            </div>
+            <div>
+              <StyledDescription>Sunset</StyledDescription>
+              <StyledSunset>{sunset} PM</StyledSunset>
+            </div>
           </StyledSun>
         ) : (
           <DetailsLoader />
         )}
         {isLoad ? (
           <StyledMoon>
-            <StyledDescription>Moonrise</StyledDescription>
-            <StyledMoonrise>{moonrise} PM</StyledMoonrise>
-            <StyledDescription>Moonset</StyledDescription>
-            <StyledMoonset>{moonset} AM</StyledMoonset>
+            <div>
+              <StyledDescription>Moonrise</StyledDescription>
+              <StyledMoonrise>{moonrise} PM</StyledMoonrise>
+            </div>
+            <div>
+              <StyledDescription>Moonset</StyledDescription>
+              <StyledMoonset>{moonset} AM</StyledMoonset>
+            </div>
           </StyledMoon>
         ) : (
           <DetailsLoader />
