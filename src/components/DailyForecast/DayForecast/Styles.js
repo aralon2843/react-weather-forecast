@@ -21,6 +21,7 @@ export const StyledDayForecast = styled.div`
     }
   }
   margin: 0px 5px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 `
 export const StyledDate = styled.p`
   font-size: 16px;

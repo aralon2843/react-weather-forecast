@@ -25,6 +25,7 @@ export const StyledButton = styled.button`
   margin-right: 15px;
   font-weight: 500;
   color: #262626;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 `
 export const StyledWrapper = styled.div`
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
