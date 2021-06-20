@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   StyledHourForecast,
   StyledPrecipitation,
@@ -6,27 +6,34 @@ import {
   StyledWind,
   StyledDescription,
   StyledTemperature,
-  StyledImage,
-} from './Styles'
-import humidity from '../../../assets/icons/humidity.svg'
-import wind from '../../../assets/icons/wind.svg'
+  StyledImage
+} from './Styles';
+import humidity from '../../../assets/icons/humidity.svg';
+import windSvg from '../../../assets/icons/wind.svg';
 
-const HourForecast = (props) => {
+const HourForecast = ({
+  icon,
+  temperature,
+  description,
+  precipitation,
+  wind,
+  time
+}) => {
   return (
     <StyledHourForecast>
-      <StyledImage src={props.icon}></StyledImage>
-      <StyledTemperature>{props.temperature}°</StyledTemperature>
-      <StyledDescription>{props.description}</StyledDescription>
+      <StyledImage src={icon}></StyledImage>
+      <StyledTemperature>{temperature}°</StyledTemperature>
+      <StyledDescription>{description}</StyledDescription>
       <StyledPrecipitation humidity={humidity}>
-        {props.precipitation}%
+        {`${precipitation}%`}
       </StyledPrecipitation>
-      <StyledWind wind={wind}>{props.wind} km/h</StyledWind>
+      <StyledWind wind={windSvg}>{`${wind} km/h`}</StyledWind>
       <StyledTime>
-        {props.time === '00' ? '12' : props.time}
-        {props.time < 12 ? ' am' : ' pm'}
+        {time === '00' ? '12' : time}
+        {time < 12 ? ' am' : ' pm'}
       </StyledTime>
     </StyledHourForecast>
-  )
-}
+  );
+};
 
-export default HourForecast
+export default HourForecast;

@@ -1,8 +1,8 @@
-import { memo } from 'react'
-import { useSelector } from 'react-redux'
-import convertTime from '../../common/convertTime'
-import Flex from '../../common/Flex'
-import DetailsLoader from './DetailsLoader'
+import { memo } from 'react';
+import { useSelector } from 'react-redux';
+import convertTime from '../../common/convertTime';
+import Flex from '../../common/Flex';
+import DetailsLoader from './DetailsLoader';
 import {
   StyledDetails,
   StyledMoon,
@@ -12,50 +12,77 @@ import {
   StyledTitle,
   StyledSunset,
   StyledMoonset,
-  StyledDescription,
-} from './Styles'
+  StyledDescription
+} from './Styles';
 
 const Details = memo((props) => {
-  const activeDay = useSelector((state) => state.dailyWeather.activeDay.date)
+  const activeDay = useSelector(
+    ({ dailyWeather }) => dailyWeather.activeDay.date
+  );
 
-  const days = useSelector((state) => state.dailyWeather.days)
+  const days = useSelector(({ dailyWeather }) => dailyWeather.days);
   const day = days.filter(
     (day) => new Date(day.dt * 1000).toDateString() === activeDay
-  )
-  const isLoad = useSelector((state) => state.currentWeather.isLoad)
+  );
+  const isLoaded = useSelector(({ currentWeather }) => currentWeather.isLoaded);
 
-  const sunset = convertTime(day[0]?.sunset)
-  const sunrise = convertTime(day[0]?.sunrise)
-  const moonset = convertTime(day[0]?.moonset)
-  const moonrise = convertTime(day[0]?.moonrise)
+  const sunset = convertTime(day[0]?.sunset);
+  const sunrise = convertTime(day[0]?.sunrise);
+  const moonset = convertTime(day[0]?.moonset);
+  const moonrise = convertTime(day[0]?.moonrise);
 
   return (
     <StyledDetails>
       <StyledTitle>Day Details</StyledTitle>
       <Flex>
-        {isLoad ? (
+        {isLoaded ? (
           <StyledSun>
             <div>
               <StyledDescription>Sunrise</StyledDescription>
-              <StyledSunrise>{sunrise} AM</StyledSunrise>
+              <StyledSunrise
+                backgroundUrl={
+                  'https://image.flaticon.com/icons/png/512/728/728123.png'
+                }
+              >
+                {sunrise} AM
+              </StyledSunrise>
             </div>
             <div>
               <StyledDescription>Sunset</StyledDescription>
-              <StyledSunset>{sunset} PM</StyledSunset>
+              <StyledSunset
+                backgroundUrl={
+                  'https://image.flaticon.com/icons/png/512/728/728124.png'
+                }
+              >
+                {sunset} PM
+              </StyledSunset>
             </div>
           </StyledSun>
         ) : (
           <DetailsLoader />
         )}
-        {isLoad ? (
+
+        {isLoaded ? (
           <StyledMoon>
             <div>
               <StyledDescription>Moonrise</StyledDescription>
-              <StyledMoonrise>{moonrise} PM</StyledMoonrise>
+              <StyledMoonrise
+                backgroundUrl={
+                  'https://image.flaticon.com/icons/png/512/728/728098.png'
+                }
+              >
+                {moonrise} PM
+              </StyledMoonrise>
             </div>
             <div>
               <StyledDescription>Moonset</StyledDescription>
-              <StyledMoonset>{moonset} AM</StyledMoonset>
+              <StyledMoonset
+                backgroundUrl={
+                  'https://image.flaticon.com/icons/png/512/728/728099.png'
+                }
+              >
+                {moonset} AM
+              </StyledMoonset>
             </div>
           </StyledMoon>
         ) : (
@@ -63,7 +90,7 @@ const Details = memo((props) => {
         )}
       </Flex>
     </StyledDetails>
-  )
-})
+  );
+});
 
-export default Details
+export default Details;
