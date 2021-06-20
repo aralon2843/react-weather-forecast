@@ -1,25 +1,26 @@
-import { takeLatest, put, call } from 'redux-saga/effects';
-import { actions } from '../actions/currentWeather';
+import { takeLatest, put, call } from 'redux-saga/effects'
+import { actions } from '../actions/currentWeather'
 import {
   getCurrentWeatherSuccess,
-  getCurrentWeatherError
-} from '../actionCreators/currentWeather';
-import API from '../../services/api';
+  getCurrentWeatherError,
+} from '../actionCreators/currentWeather'
+import API from '../../services/api'
 
 export function* watchGetCurrentWeather() {
-  yield takeLatest(actions.GET_CURRENT_WEATHER, doGetCurrentWeather);
+  yield takeLatest(actions.GET_CURRENT_WEATHER, doGetCurrentWeather)
 }
 
-const fetchCurrentWeather = ({ lat, lon, city }) =>
-  API.getCurrentWeather(lat, lon, city);
+const fetchCurrentWeather = ({ lat, lon, searchValue }) => {
+  return API.getCurrentWeather(lat, lon, searchValue)
+}
 
 function* doGetCurrentWeather(action) {
-  const { payload } = action;
+  const { payload } = action
 
   try {
-    const response = yield call(fetchCurrentWeather, payload);
-    yield put(getCurrentWeatherSuccess(response));
+    const response = yield call(fetchCurrentWeather, payload)
+    yield put(getCurrentWeatherSuccess(response))
   } catch ({ message }) {
-    yield put(getCurrentWeatherError(message));
+    yield put(getCurrentWeatherError())
   }
 }

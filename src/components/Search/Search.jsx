@@ -17,8 +17,8 @@ const Search = () => {
   const onChangeHandler = () => {
     setSearchValue(searchRef.current.value)
   }
-  const isResponseSuccessful = useSelector(
-    (state) => state.search.isResponseSuccessful
+  const error = useSelector(
+    (state) => state.currentWeather.error
   )
 
   return (
@@ -35,7 +35,7 @@ const Search = () => {
           value={searchValue}
         />
       </form>
-      {isResponseSuccessful ? (
+      {!error ? (
         ''
       ) : (
         <StyledErrorMessage>

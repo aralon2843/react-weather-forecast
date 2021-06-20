@@ -46,5 +46,5 @@ export const StyledTemperature = styled.p`
   margin-bottom: 10px;
 `
 export const StyledDescription = styled.p`
-  min-width: 120px;
+  min-width: 100px;
 `

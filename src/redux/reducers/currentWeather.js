@@ -1,4 +1,4 @@
-import { actions } from '../actions/currentWeather';
+import { actions } from '../actions/currentWeather'
 
 const initialState = {
   country: null,
@@ -9,15 +9,17 @@ const initialState = {
   feelsLike: null,
   wind: null,
   visibility: null,
-  isLoaded: false
-};
+  isLoaded: false,
+  error: false,
+}
 
 const CurrentWeather = (state = initialState, { type, payload }) => {
   switch (type) {
     case actions.GET_CURRENT_WEATHER: {
       return {
-        isLoaded: false
-      };
+        ...state,
+        isLoaded: false,
+      }
     }
 
     case actions.GET_CURRENT_WEATHER_SUCCESS: {
@@ -33,19 +35,21 @@ const CurrentWeather = (state = initialState, { type, payload }) => {
         feelsLike: payload.main.feels_like,
         wind: payload.wind.speed,
         visibility: payload.visibility,
-        isLoaded: true
-      };
+        error: false,
+        isLoaded: true,
+      }
     }
 
     case actions.GET_CURRENT_WEATHER_ERROR: {
       // return state.set('isCurrentWeatherLoaded', false);
       // return { isCurrentWeatherLoaded: false };
-      return { isLoaded: false };
+
+      return { ...state, isLoaded: true, error: true }
     }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default CurrentWeather;
+export default CurrentWeather
