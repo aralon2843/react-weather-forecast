@@ -1,13 +1,11 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const StyledHourForecast = styled.div`
   padding: 10px 10px 10px 5px;
   min-width: 80px;
   flex: 0 1 135px;
-  // top: 200px;
   opacity: 0.2;
   position: relative;
-  -webkit-animation: 1s slidein forwards;
   animation: 1s slidein forwards;
 
   @-webkit-keyframes slidein {
@@ -21,7 +19,7 @@ export const StyledHourForecast = styled.div`
       opacity: 1;
     }
   }
-`
+`;
 
 export const StyledImage = styled.img`
   object-fit: cover;
@@ -29,12 +27,12 @@ export const StyledImage = styled.img`
   width: 70px;
   height: 70px;
   margin: -15px 0px -12px -14px;
-`
+`;
 
 export const StyledTemperature = styled.p`
   font-size: 20px;
   margin-bottom: 7px;
-`
+`;
 
 export const StyledDescription = styled.p`
   font-size: 14px;
@@ -42,7 +40,7 @@ export const StyledDescription = styled.p`
   min-height: 33px;
   height: 45px;
   max-width: 60px;
-`
+`;
 
 export const StyledPrecipitation = styled.p`
   color: rgba(255, 255, 255, 0.7);
@@ -50,7 +48,7 @@ export const StyledPrecipitation = styled.p`
   background: url(${(props) => props.humidity}) left/cover no-repeat;
   background-size: 15px;
   padding-left: 20px;
-`
+`;
 
 export const StyledWind = styled.p`
   color: rgba(255, 255, 255, 0.7);
@@ -58,9 +56,9 @@ export const StyledWind = styled.p`
   background: url(${(props) => props.wind}) left/cover no-repeat;
   background-size: 15px;
   padding-left: 20px;
-`
+`;
 
 export const StyledTime = styled.p`
   font-size: 14px;
   font-weight: 500;
-`
+`;

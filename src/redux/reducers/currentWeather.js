@@ -1,3 +1,5 @@
+import { actions } from '../actions/currentWeather';
+
 const initialState = {
   country: null,
   city: null,
@@ -7,12 +9,20 @@ const initialState = {
   feelsLike: null,
   wind: null,
   visibility: null,
-  isLoad: false,
-}
+  isLoaded: false
+};
 
 const CurrentWeather = (state = initialState, { type, payload }) => {
   switch (type) {
-    case 'SET_CURRENT_WEATHER':
+    case actions.GET_CURRENT_WEATHER: {
+      return {
+        isLoaded: false
+      };
+    }
+
+    case actions.GET_CURRENT_WEATHER_SUCCESS: {
+      // return state.set(...state).set('isCurrentWeatherLoaded', true); // попробуй реализовать через state.set или state.update
+
       return {
         ...state,
         country: payload.sys.country,
@@ -23,15 +33,19 @@ const CurrentWeather = (state = initialState, { type, payload }) => {
         feelsLike: payload.main.feels_like,
         wind: payload.wind.speed,
         visibility: payload.visibility,
-      }
-    case 'SET_LOAD':
-      return {
-        ...state,
-        isLoad: payload.isLoad,
-      }
-    default:
-      return state
-  }
-}
+        isLoaded: true
+      };
+    }
 
-export default CurrentWeather
+    case actions.GET_CURRENT_WEATHER_ERROR: {
+      // return state.set('isCurrentWeatherLoaded', false);
+      // return { isCurrentWeatherLoaded: false };
+      return { isLoaded: false };
+    }
+
+    default:
+      return state;
+  }
+};
+
+export default CurrentWeather;

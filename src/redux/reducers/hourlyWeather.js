@@ -1,23 +1,23 @@
 const initialState = {
   hours: [],
-  isLoad: false,
-}
+  isLoaded: false
+};
 
 const HourlyWeather = (state = initialState, { type, payload }) => {
   switch (type) {
     case 'SET_HOURLY_WEATHER':
       return {
         ...state,
-        hours: payload.hours.list,
-      }
+        hours: payload.hours.list
+      };
     case 'SET_LOAD':
       return {
         ...state,
-        isLoad: payload.isLoad,
-      }
+        isLoaded: payload.isLoaded
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default HourlyWeather
+export default HourlyWeather;

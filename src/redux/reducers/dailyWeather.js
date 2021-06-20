@@ -1,46 +1,46 @@
 const initialState = {
   days: [],
   activeDay: {
-    date: new Date().toDateString(),
-    isLoad: false,
+    date: new Date().toDateString()
   },
   coords: {
     lat: null,
-    lon: null,
+    lon: null
   },
-}
+  isLoaded: false
+};
 
 const DailyWeather = (state = initialState, { type, payload }) => {
   switch (type) {
     case 'SET_DAILY_WEATHER':
       return {
         ...state,
-        days: [...payload.daily],
-      }
+        days: [...payload.daily]
+      };
     case 'SET_ACTIVE_DAY':
       return {
         ...state,
         activeDay: {
-          date: payload.date,
-        },
-      }
+          date: payload.date
+        }
+      };
     case 'SET_COORDS_BY_SEARCH': {
       return {
         ...state,
         coords: {
           lat: payload.lat,
-          lon: payload.lon,
-        },
-      }
+          lon: payload.lon
+        }
+      };
     }
     case 'SET_LOAD':
       return {
         ...state,
-        isLoad: payload.isLoad,
-      }
+        isLoaded: payload.isLoaded
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default DailyWeather
+export default DailyWeather;

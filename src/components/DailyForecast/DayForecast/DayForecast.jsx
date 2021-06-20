@@ -1,27 +1,39 @@
-import React from 'react'
+import React from 'react';
+import { useCallback } from 'react';
 import {
   StyledDate,
   StyledDayForecast,
   StyledDescription,
   StyledImage,
-  StyledTemperature,
-} from './Styles'
+  StyledTemperature
+} from './Styles';
 
-function DayForecast(props) {
+function DayForecast({
+  active,
+  date,
+  icon,
+  maxTemp,
+  minTemp,
+  description,
+  onDayClick
+}) {
+  const onClickHandler = useCallback(() => onDayClick(), []);
+
   return (
     <StyledDayForecast
-      className={props.active ? 'active' : ''}
-      onClick={() => props.onDayClick()}>
+      className={active ? 'active' : ''}
+      onClick={onClickHandler}
+    >
       <StyledDate>
-        {props.date[0]} {props.date[2]}
+        {date[0]} {date[2]}
       </StyledDate>
-      <StyledImage src={props.icon}></StyledImage>
+      <StyledImage src={icon}></StyledImage>
       <StyledTemperature>
-        {props.maxTemp}° <span> {props.minTemp}°</span>
+        {maxTemp}° <span> {minTemp}°</span>
       </StyledTemperature>
-      <StyledDescription>{props.description}</StyledDescription>
+      <StyledDescription>{description}</StyledDescription>
     </StyledDayForecast>
-  )
+  );
 }
 
-export default DayForecast
+export default DayForecast;
