@@ -6,10 +6,10 @@ import Details from './components/Details/Details'
 import HourlyForecast from './components/HourlyForecast/HourlyForecast'
 import { getPosition } from './redux/actions/position'
 import { getCurrentWeatherRequest } from './redux/actionCreators/currentWeather'
-import { getDailyWeather } from './redux/actions/dailyWeather'
 import { getHourlyWeather } from './redux/actions/hourlyWeather'
 import Search from './components/Search/Search'
 import { Wrapper, Container } from './appStyle'
+import { getDailyWeatherRequest } from './redux/actionCreators/dailyWeather'
 
 const App = memo(() => {
   const dispatch = useDispatch()
@@ -21,8 +21,7 @@ const App = memo(() => {
   const getWeatherByPosition = () => {
     // refactored on redux-sagas
     dispatch(getCurrentWeatherRequest({ lat, lon }))
-
-    dispatch(getDailyWeather(lat, lon))
+    dispatch(getDailyWeatherRequest({lat, lon}))
     dispatch(getHourlyWeather(lat, lon))
   }
 

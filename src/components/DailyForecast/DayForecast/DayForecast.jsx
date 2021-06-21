@@ -1,12 +1,11 @@
-import React from 'react';
-import { useCallback } from 'react';
+import React from 'react'
 import {
   StyledDate,
   StyledDayForecast,
   StyledDescription,
   StyledImage,
-  StyledTemperature
-} from './Styles';
+  StyledTemperature,
+} from './Styles'
 
 function DayForecast({
   active,
@@ -15,15 +14,14 @@ function DayForecast({
   maxTemp,
   minTemp,
   description,
-  onDayClick
+  onDayClick,
 }) {
-  const onClickHandler = useCallback(() => onDayClick(), []);
+  const onClickHandler = () => onDayClick()
 
   return (
     <StyledDayForecast
       className={active ? 'active' : ''}
-      onClick={onClickHandler}
-    >
+      onClick={onClickHandler}>
       <StyledDate>
         {date[0]} {date[2]}
       </StyledDate>
@@ -33,7 +31,7 @@ function DayForecast({
       </StyledTemperature>
       <StyledDescription>{description}</StyledDescription>
     </StyledDayForecast>
-  );
+  )
 }
 
-export default DayForecast;
+export default DayForecast

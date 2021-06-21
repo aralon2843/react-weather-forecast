@@ -1,46 +1,57 @@
+import { actions } from '../actions/dailyWeather'
+
 const initialState = {
   days: [],
   activeDay: {
-    date: new Date().toDateString()
+    date: new Date().toDateString(),
   },
   coords: {
     lat: null,
-    lon: null
+    lon: null,
   },
-  isLoaded: false
-};
+  isLoaded: false,
+  error: false,
+}
 
 const DailyWeather = (state = initialState, { type, payload }) => {
   switch (type) {
-    case 'SET_DAILY_WEATHER':
+    case actions.GET_DAILY_WEATHER:
       return {
         ...state,
-        days: [...payload.daily]
-      };
-    case 'SET_ACTIVE_DAY':
+        isLoaded: false,
+      }
+    case actions.GET_DAILY_WEATHER_SUCCESS:
+      return {
+        ...state,
+        days: [...payload.daily],
+        error: false,
+        isLoaded: true,
+      }
+    case actions.GET_DAILY_WEATHER_ERROR:
+      return {
+        ...state,
+        isLoaded: true,
+        error: true,
+      }
+    case actions.SET_ACTIVE_DAY:
       return {
         ...state,
         activeDay: {
-          date: payload.date
-        }
-      };
-    case 'SET_COORDS_BY_SEARCH': {
+          date: payload,
+        },
+      }
+    case actions.SET_COORDS_BY_SEARCH: {
       return {
         ...state,
         coords: {
           lat: payload.lat,
-          lon: payload.lon
-        }
-      };
+          lon: payload.lon,
+        },
+      }
     }
-    case 'SET_LOAD':
-      return {
-        ...state,
-        isLoaded: payload.isLoaded
-      };
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default DailyWeather;
+export default DailyWeather

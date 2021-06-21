@@ -5,6 +5,7 @@ import {
   getCurrentWeatherError,
 } from '../actionCreators/currentWeather'
 import API from '../../services/api'
+import { setCoordsBySearch } from '../actionCreators/dailyWeather'
 
 export function* watchGetCurrentWeather() {
   yield takeLatest(actions.GET_CURRENT_WEATHER, doGetCurrentWeather)
@@ -20,6 +21,7 @@ function* doGetCurrentWeather(action) {
   try {
     const response = yield call(fetchCurrentWeather, payload)
     yield put(getCurrentWeatherSuccess(response))
+    yield put(setCoordsBySearch(response.coord))
   } catch ({ message }) {
     yield put(getCurrentWeatherError())
   }
