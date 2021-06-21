@@ -8,8 +8,8 @@ import {
   StyledTemperature,
   StyledImage
 } from './Styles';
-import humidity from '../../../assets/icons/humidity.svg';
-import windSvg from '../../../assets/icons/wind.svg';
+import humidityIcon from '../../../assets/icons/humidity.svg';
+import windIcon from '../../../assets/icons/wind.svg';
 
 const HourForecast = ({
   icon,
@@ -24,10 +24,10 @@ const HourForecast = ({
       <StyledImage src={icon}></StyledImage>
       <StyledTemperature>{temperature}°</StyledTemperature>
       <StyledDescription>{description}</StyledDescription>
-      <StyledPrecipitation humidity={humidity}>
+      <StyledPrecipitation icon={humidityIcon}>
         {`${precipitation}%`}
       </StyledPrecipitation>
-      <StyledWind wind={windSvg}>{`${wind} km/h`}</StyledWind>
+      <StyledWind icon={windIcon}>{`${wind} km/h`}</StyledWind>
       <StyledTime>
         {time === '00' ? '12' : time}
         {time < 12 ? ' am' : ' pm'}

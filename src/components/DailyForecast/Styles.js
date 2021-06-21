@@ -19,5 +19,5 @@ export const StyledWrapper = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-  padding: 2px 2px 10px 2px;
+  padding: 2px 2px 10px 0px;
 `;

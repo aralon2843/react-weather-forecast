@@ -17,9 +17,7 @@ const Search = () => {
   const onChangeHandler = () => {
     setSearchValue(searchRef.current.value)
   }
-  const error = useSelector(
-    (state) => state.currentWeather.error
-  )
+  const error = useSelector((state) => state.currentWeather.error)
 
   return (
     <StyledSearchWrapper>
@@ -33,13 +31,14 @@ const Search = () => {
           type={'text'}
           onChange={onChangeHandler}
           value={searchValue}
+          placeholder='Search for location'
         />
       </form>
       {!error ? (
         ''
       ) : (
         <StyledErrorMessage>
-          Ошибка. Неправильное название города
+          no results found
         </StyledErrorMessage>
       )}
     </StyledSearchWrapper>

@@ -1,12 +1,16 @@
 import styled from 'styled-components'
 
 export const StyledDayForecast = styled.div`
-  padding: 5px 15px 10px 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 15px 10px 10px;
   min-width: 95px;
-  max-width: 125px;
+  width: 120px;
   cursor: pointer;
+  border-radius: 10px;
   &:hover {
-    outline: 2px solid rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.1);
   }
   &.active {
     background-color: rgba(255, 255, 255, 0.3);
@@ -14,14 +18,21 @@ export const StyledDayForecast = styled.div`
     &::after {
       content: '';
       position: absolute;
-      bottom: -23px;
+      bottom: -20px;
       left: calc(50% - 13px);
       border: 13px solid transparent;
-      border-top: 10px solid rgba(255, 255, 255, 0.3);
+      border-top: 7px solid rgba(255, 255, 255, 0.3);
     }
   }
-  margin: 0px 5px;
+  transition: 0.1s backround-color all;
+
+  margin: 0px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  @media (max-width: 768px) {
+    width: 80px;
+    padding: 5px;
+  }
 `
 export const StyledDate = styled.p`
   font-size: 16px;
@@ -46,5 +57,5 @@ export const StyledTemperature = styled.p`
   margin-bottom: 10px;
 `
 export const StyledDescription = styled.p`
-  min-width: 100px;
+  text-align: center;
 `

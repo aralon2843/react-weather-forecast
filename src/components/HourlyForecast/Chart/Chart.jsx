@@ -4,7 +4,7 @@ import { Line } from 'react-chartjs-2'
 import { GraphWrapper } from '../Styles'
 
 const Chart = memo((props) => {
-  defaults.color = '#fff'
+  defaults.color = 'rgba(255, 255, 255, 0.8)'
   defaults.font.family = "'Montserrat', 'sans-serif'"
   defaults.font.weight = 500
 
@@ -21,8 +21,8 @@ const Chart = memo((props) => {
       {
         label: 'temperature',
         data: props.data.map((hour) => hour.temperature),
-        fill: false,
-        backgroundColor: '#EC6E4C',
+        fill: true,
+        backgroundColor: 'rgba(255, 255, 255, 0.2)',
         borderColor: 'rgba(255, 255, 255, 0.5)',
       },
     ],
@@ -35,7 +35,7 @@ const Chart = memo((props) => {
 
   return (
     <GraphWrapper>
-      <Line data={data} options={options} width={1200} height={212} />
+      <Line data={data} options={options} width={1200} height={212}/>
     </GraphWrapper>
   )
 })

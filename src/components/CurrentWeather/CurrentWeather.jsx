@@ -9,7 +9,14 @@ import {
   StyledLocation,
   StyledTemperature,
   StyledWeatherIcon,
+  FeelsLike,
+  Wind,
+  Visibility,
 } from './Styles'
+
+import feelsLikeIcon from '../../assets/icons/thermometer.svg'
+import windIcon from '../../assets/icons/wind.svg'
+import visibilityIcon from '../../assets/icons/witness.svg'
 
 const CurrentWeather = () => {
   const {
@@ -40,9 +47,15 @@ const CurrentWeather = () => {
           </Flex>
           <StyledDescription>{description}</StyledDescription>
           <CurrentWeatherDetails>
-            <span>Feels like {Math.round(feelsLike)}°</span>
-            <span>Wind {Math.round(wind)} km\h</span>
-            <span>Visibility {visibility / 1000} km</span>
+            <FeelsLike icon={feelsLikeIcon}>
+              <div>Feels like</div> <div>{Math.round(feelsLike)}°</div>
+            </FeelsLike>
+            <Wind icon={windIcon}>
+              <div>Wind</div> {Math.round(wind)} km\h
+            </Wind>
+            <Visibility icon={visibilityIcon}>
+              <div>Visibility</div> {visibility / 1000} km
+            </Visibility>
           </CurrentWeatherDetails>
         </>
       ) : (

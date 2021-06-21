@@ -2,7 +2,6 @@ import { memo, useEffect } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import CurrentWeather from './components/CurrentWeather/CurrentWeather'
 import DailyForecast from './components/DailyForecast/DailyForecast'
-import Details from './components/Details/Details'
 import HourlyForecast from './components/HourlyForecast/HourlyForecast'
 import { getPosition } from './redux/actions/position'
 import { getCurrentWeatherRequest } from './redux/actionCreators/currentWeather'
@@ -47,7 +46,6 @@ const App = memo(() => {
         <Search />
         <DailyForecast />
         <HourlyForecast />
-        <Details />
       </Container>
     </Wrapper>
   )
