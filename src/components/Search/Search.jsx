@@ -2,7 +2,7 @@ import { StyledErrorMessage, StyledSearch, StyledSearchWrapper } from './Styles'
 import search from '../../assets/icons/search.svg'
 import { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSearchCity } from '../../redux/actions/search'
+import { setSearchCity } from '../../redux/actionCreators/search'
 
 const Search = () => {
   const searchRef = useRef()

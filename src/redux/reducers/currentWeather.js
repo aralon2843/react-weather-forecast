@@ -23,8 +23,6 @@ const CurrentWeather = (state = initialState, { type, payload }) => {
     }
 
     case actions.GET_CURRENT_WEATHER_SUCCESS: {
-      // return state.set(...state).set('isCurrentWeatherLoaded', true); // попробуй реализовать через state.set или state.update
-
       return {
         ...state,
         country: payload.sys.country,
@@ -41,9 +39,6 @@ const CurrentWeather = (state = initialState, { type, payload }) => {
     }
 
     case actions.GET_CURRENT_WEATHER_ERROR: {
-      // return state.set('isCurrentWeatherLoaded', false);
-      // return { isCurrentWeatherLoaded: false };
-
       return { ...state, isLoaded: true, error: true }
     }
 

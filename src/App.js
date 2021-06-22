@@ -3,12 +3,12 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import CurrentWeather from './components/CurrentWeather/CurrentWeather'
 import DailyForecast from './components/DailyForecast/DailyForecast'
 import HourlyForecast from './components/HourlyForecast/HourlyForecast'
-import { getPosition } from './redux/actions/position'
 import { getCurrentWeatherRequest } from './redux/actionCreators/currentWeather'
-import { getHourlyWeather } from './redux/actions/hourlyWeather'
 import Search from './components/Search/Search'
 import { Wrapper, Container } from './appStyle'
 import { getDailyWeatherRequest } from './redux/actionCreators/dailyWeather'
+import { getHourlyWeatherRequest } from './redux/actionCreators/hourlyWeather'
+import { getPosition } from './redux/actionCreators/position'
 
 const App = memo(() => {
   const dispatch = useDispatch()
@@ -18,15 +18,14 @@ const App = memo(() => {
   const searchValue = useSelector((state) => state.search.searchCity)
 
   const getWeatherByPosition = () => {
-    // refactored on redux-sagas
     dispatch(getCurrentWeatherRequest({ lat, lon }))
-    dispatch(getDailyWeatherRequest({lat, lon}))
-    dispatch(getHourlyWeather(lat, lon))
+    dispatch(getDailyWeatherRequest({ lat, lon }))
+    dispatch(getHourlyWeatherRequest({ lat, lon }))
   }
 
   const getWeatherBySearch = (searchValue) => {
     dispatch(getCurrentWeatherRequest({ lat: null, lon: null, searchValue }))
-    dispatch(getHourlyWeather(null, null, searchValue))
+    dispatch(getHourlyWeatherRequest({ lat: null, lon: null, searchValue }))
   }
 
   useEffect(() => {

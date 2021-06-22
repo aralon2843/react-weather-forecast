@@ -1,23 +1,33 @@
+import { actions } from '../actions/hourlyWeather'
+
 const initialState = {
   hours: [],
-  isLoaded: false
-};
+  isLoaded: false,
+  error: false,
+}
 
 const HourlyWeather = (state = initialState, { type, payload }) => {
   switch (type) {
-    case 'SET_HOURLY_WEATHER':
+    case actions.GET_HOURLY_WEATHER:
       return {
         ...state,
-        hours: payload.hours.list
-      };
-    case 'SET_LOAD':
+        isLoaded: false,
+      }
+    case actions.GET_HOURLY_WEATHER_SUCCESS:
+      return {
+        hours: payload.list,
+        isLoaded: true,
+        error: false,
+      }
+    case actions.GET_HOURLY_WEATHER_ERROR:
       return {
         ...state,
-        isLoaded: payload.isLoaded
-      };
+        isLoaded: true,
+        error: true,
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default HourlyWeather;
+export default HourlyWeather

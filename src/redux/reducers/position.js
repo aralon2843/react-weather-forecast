@@ -1,3 +1,5 @@
+import { actions } from '../actions/position'
+
 const initialState = {
   lat: null,
   lon: null,
@@ -5,7 +7,7 @@ const initialState = {
 
 const Position = (state = initialState, { type, payload }) => {
   switch (type) {
-    case 'SET_POSITION':
+    case actions.GET_POSITION:
       return {
         ...state,
         lat: payload.lat,
